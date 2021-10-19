@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taichinhcanha/screens/expense.dart';
 import '../screens/dashboard.dart';
 
 void main() {
@@ -12,7 +13,11 @@ class FinancialAssistant extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: DashboardScreen(),
+      routes: {
+        '/': (context) => DashboardScreen(),
+        '/expense': (context) => ExpenseScreen(),
+      },
+      initialRoute: '/', // note: cannot set both `initialRoute` and `home`
     );
   }
 }

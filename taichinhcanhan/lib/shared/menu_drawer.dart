@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:taichinhcanha/screens/dashboard.dart';
+import '../screens/dashboard.dart';
+import '../screens/expense.dart';
 
 class MenuDrawer extends StatelessWidget {
   const MenuDrawer({Key? key}) : super(key: key);
@@ -25,8 +26,8 @@ class MenuDrawer extends StatelessWidget {
         title: Text(title),
         onTap: () {
           switch (title) {
-            case 'Dashboard':
-              screen = DashboardScreen();
+            case 'Expense':
+              screen = ExpenseScreen();
               break;
             default:
               screen = DashboardScreen();
