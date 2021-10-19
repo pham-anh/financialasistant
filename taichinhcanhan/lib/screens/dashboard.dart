@@ -10,6 +10,16 @@ class DashboardScreen extends StatelessWidget {
         appBar: AppBar(title: const Text('Your Financial Assistant')),
         drawer: const MenuDrawer(),
         bottomNavigationBar: BottomNavigationBar(
+          onTap: (int index) {
+            switch (index) {
+              case 0:
+                Navigator.pushNamed(context, '/');
+                break;
+              case 1:
+                Navigator.pushNamed(context, '/expense');
+                break;
+            }
+          },
           items: const [
             BottomNavigationBarItem(
                 icon: Icon(Icons.dashboard), label: 'Dashboard'),
