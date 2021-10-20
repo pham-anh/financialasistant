@@ -2,8 +2,27 @@ import 'package:flutter/material.dart';
 import '../shared/menu_drawer.dart';
 import '../shared/menu_bottom.dart';
 
-class ExpenseScreen extends StatelessWidget {
+class ExpenseScreen extends StatefulWidget {
   const ExpenseScreen({Key? key}) : super(key: key);
+
+  @override
+  State<ExpenseScreen> createState() => _ExpenseScreenState();
+}
+
+class _ExpenseScreenState extends State<ExpenseScreen> {
+  final double fontSize = 18;
+  String result = '';
+  bool isMetric = true;
+  bool isImperial = false;
+  double? height;
+  double? weight;
+  late List<bool> isSelected;
+
+  @override
+  void initState() {
+    isSelected = [isMetric, isImperial];
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +30,39 @@ class ExpenseScreen extends StatelessWidget {
       appBar: AppBar(title: const Text('Your Financial Assistant')),
       drawer: const MenuDrawer(),
       bottomNavigationBar: const MenuBottom(),
-      body: const Text('Expense screen'),
+      body: Column(
+        children: [
+          ToggleButtons(children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                'Metric',
+                style: TextStyle(fontSize: fontSize),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                'Imperial',
+                style: TextStyle(fontSize: fontSize),
+              ),
+            ),
+          ], isSelected: isSelected, onPressed: toggleMeasure),
+        ],
+      ),
     );
+  }
+
+  void toggleMeasure(value) {
+    if (value == 0) {
+      isMetric = true;
+      isImperial = false;
+    } else {
+      isMetric = false;
+      isImperial = true;
+    }
+    setState(() {
+      isSelected = [isMetric, isImperial];
+    });
   }
 }
