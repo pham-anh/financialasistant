@@ -10,7 +10,7 @@ class DashboardScreen extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(title: const Text('Your Financial Assistant')),
         drawer: const MenuDrawer(),
-        bottomNavigationBar: MenuBottom(),
+        bottomNavigationBar: const MenuBottom(),
         body: const Text('Dashboard'));
   }
 }

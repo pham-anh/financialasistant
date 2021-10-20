@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../shared/menu_drawer.dart';
+import '../shared/menu_bottom.dart';
 
 class ExpenseScreen extends StatelessWidget {
   const ExpenseScreen({Key? key}) : super(key: key);
@@ -9,14 +10,7 @@ class ExpenseScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Your Financial Assistant')),
       drawer: const MenuDrawer(),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const [
-          BottomNavigationBarItem(
-              icon: Icon(Icons.dashboard), label: 'Dashboard'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.money_off), label: 'Expense'),
-        ],
-      ),
+      bottomNavigationBar: const MenuBottom(),
       body: const Text('Expense screen'),
     );
   }
