@@ -39,47 +39,49 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
       appBar: AppBar(title: const Text('Your Financial Assistant')),
       drawer: const MenuDrawer(),
       bottomNavigationBar: const MenuBottom(),
-      body: Column(children: [
-        ToggleButtons(children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
+      body: SingleChildScrollView(
+        child: Column(children: [
+          ToggleButtons(children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                'Metric',
+                style: TextStyle(fontSize: fontSize),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text(
+                'Imperial',
+                style: TextStyle(fontSize: fontSize),
+              ),
+            ),
+          ], isSelected: isSelected, onPressed: toggleMeasure),
+          TextField(
+            controller: fieldtHeight,
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(hintText: heightMessage),
+          ),
+          TextField(
+            controller: fieldWeight,
+            keyboardType: TextInputType.number,
+            decoration: InputDecoration(hintText: weightMessage),
+          ),
+          ElevatedButton(
             child: Text(
-              'Metric',
-              style: TextStyle(fontSize: fontSize),
+              'Calculate BMI',
+              style: TextStyle(
+                fontSize: fontSize,
+              ),
             ),
+            onPressed: findBMI,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Text(
-              'Imperial',
-              style: TextStyle(fontSize: fontSize),
-            ),
-          ),
-        ], isSelected: isSelected, onPressed: toggleMeasure),
-        TextField(
-          controller: fieldtHeight,
-          keyboardType: TextInputType.number,
-          decoration: InputDecoration(hintText: heightMessage),
-        ),
-        TextField(
-          controller: fieldWeight,
-          keyboardType: TextInputType.number,
-          decoration: InputDecoration(hintText: weightMessage),
-        ),
-        ElevatedButton(
-          child: Text(
-            'Calculate BMI',
-            style: TextStyle(
-              fontSize: fontSize,
-            ),
-          ),
-          onPressed: findBMI,
-        ),
-        Text(
-          result,
-          style: TextStyle(fontSize: fontSize),
-        )
-      ]),
+          Text(
+            result,
+            style: TextStyle(fontSize: fontSize),
+          )
+        ]),
+      ),
     );
   }
 
