@@ -57,24 +57,33 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
               ),
             ),
           ], isSelected: isSelected, onPressed: toggleMeasure),
-          TextField(
-            controller: fieldtHeight,
-            keyboardType: TextInputType.number,
-            decoration: InputDecoration(hintText: heightMessage),
-          ),
-          TextField(
-            controller: fieldWeight,
-            keyboardType: TextInputType.number,
-            decoration: InputDecoration(hintText: weightMessage),
-          ),
-          ElevatedButton(
-            child: Text(
-              'Calculate BMI',
-              style: TextStyle(
-                fontSize: fontSize,
-              ),
+          Padding(
+            padding: const EdgeInsets.all(24),
+            child: TextField(
+              controller: fieldtHeight,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(hintText: heightMessage),
             ),
-            onPressed: findBMI,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(24),
+            child: TextField(
+              controller: fieldWeight,
+              keyboardType: TextInputType.number,
+              decoration: InputDecoration(hintText: weightMessage),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(32),
+            child: ElevatedButton(
+              child: Text(
+                'Calculate BMI',
+                style: TextStyle(
+                  fontSize: fontSize,
+                ),
+              ),
+              onPressed: findBMI,
+            ),
           ),
           Text(
             result,
