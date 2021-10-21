@@ -10,6 +10,12 @@ class ExpenseScreen extends StatefulWidget {
 }
 
 class _ExpenseScreenState extends State<ExpenseScreen> {
+  // add input text field
+  final TextEditingController fieldtHeight = TextEditingController();
+  final TextEditingController fieldWeight = TextEditingController();
+  String heightMessage = '';
+  String weightMessage = '';
+
   final double fontSize = 18;
   String result = '';
   bool isMetric = true;
@@ -26,30 +32,54 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
 
   @override
   Widget build(BuildContext context) {
+    heightMessage =
+        'Enter your height in ' + ((isMetric ? 'meters' : 'inches'));
+    weightMessage = 'Enter your weight in ' + ((isMetric ? 'kilos' : 'pounds'));
     return Scaffold(
       appBar: AppBar(title: const Text('Your Financial Assistant')),
       drawer: const MenuDrawer(),
       bottomNavigationBar: const MenuBottom(),
-      body: Column(
-        children: [
-          ToggleButtons(children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                'Metric',
-                style: TextStyle(fontSize: fontSize),
-              ),
+      body: Column(children: [
+        ToggleButtons(children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Text(
+              'Metric',
+              style: TextStyle(fontSize: fontSize),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                'Imperial',
-                style: TextStyle(fontSize: fontSize),
-              ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Text(
+              'Imperial',
+              style: TextStyle(fontSize: fontSize),
             ),
-          ], isSelected: isSelected, onPressed: toggleMeasure),
-        ],
-      ),
+          ),
+        ], isSelected: isSelected, onPressed: toggleMeasure),
+        TextField(
+          controller: fieldtHeight,
+          keyboardType: TextInputType.number,
+          decoration: InputDecoration(hintText: heightMessage),
+        ),
+        TextField(
+          controller: fieldWeight,
+          keyboardType: TextInputType.number,
+          decoration: InputDecoration(hintText: weightMessage),
+        ),
+        ElevatedButton(
+          child: Text(
+            'Calculate BMI',
+            style: TextStyle(
+              fontSize: fontSize,
+            ),
+          ),
+          onPressed: findBMI,
+        ),
+        Text(
+          result,
+          style: TextStyle(fontSize: fontSize),
+        )
+      ]),
     );
   }
 
@@ -63,6 +93,22 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
     }
     setState(() {
       isSelected = [isMetric, isImperial];
+    });
+  }
+
+  void findBMI() {
+    double bmi = 0;
+    double height = double.tryParse(fieldtHeight.text) ?? 0;
+    double weight = double.tryParse(fieldWeight.text) ?? 0;
+
+    if (isMetric) {
+      bmi = weight / (height * height);
+    } else {
+      bmi = weight * 703 / (height * height);
+    }
+
+    setState(() {
+      result = 'Your BIM is ' + bmi.toStringAsFixed(2);
     });
   }
 }
