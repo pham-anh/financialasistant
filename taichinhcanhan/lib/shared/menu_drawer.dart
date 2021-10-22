@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taichinhcanha/screens/httpScreen.dart';
 import '../screens/dashboard.dart';
 import '../screens/expense.dart';
 
@@ -15,7 +16,12 @@ class MenuDrawer extends StatelessWidget {
   }
 
   List<Widget> buildMenuItems(BuildContext context) {
-    final List<String> menuTitles = ['Dashboard', 'Expense', 'Assets Growth'];
+    final List<String> menuTitles = [
+      'Dashboard',
+      'Expense',
+      'Assets Growth',
+      'Weather'
+    ];
 
     List<Widget> menuItems = [];
     menuItems.add(DrawerHeader(child: Text('Financial Assistant')));
@@ -28,6 +34,9 @@ class MenuDrawer extends StatelessWidget {
           switch (title) {
             case 'Expense':
               screen = ExpenseScreen();
+              break;
+            case 'Weather':
+              screen = HttpScreen();
               break;
             default:
               screen = DashboardScreen();
