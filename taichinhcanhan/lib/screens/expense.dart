@@ -41,22 +41,6 @@ class _ExpenseScreenState extends State<ExpenseScreen> {
       bottomNavigationBar: const MenuBottom(),
       body: SingleChildScrollView(
         child: Column(children: [
-          ToggleButtons(children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                'Metric',
-                style: TextStyle(fontSize: fontSize),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                'Imperial',
-                style: TextStyle(fontSize: fontSize),
-              ),
-            ),
-          ], isSelected: isSelected, onPressed: toggleMeasure),
           Padding(
             padding: const EdgeInsets.all(24),
             child: TextField(

@@ -28,7 +28,7 @@ class _HttpScreenState extends State<HttpScreen> {
 
   Future getData() async {
     HttpHelper helper = HttpHelper();
-    result = await helper.getCache("hh");
+    result = await helper.getExpenses();
     setState(() {});
   }
 }
