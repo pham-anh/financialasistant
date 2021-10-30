@@ -33,16 +33,18 @@ class _RandomWordsState extends State<RandomWords> {
   }
 
   Widget _buildSuggestions() {
-    return ListView.builder(itemBuilder: (context, i) {
-      if (i.isOdd) return const Divider();
+    return ListView.builder(
+        padding: const EdgeInsets.all(16.0),
+        itemBuilder: (context, i) {
+          if (i.isOdd) return const Divider();
 
-      final index = i ~/ 2;
-      if (index >= _suggestions.length) {
-        _suggestions.addAll(generateWordPairs().take(10));
-      }
+          final index = i ~/ 2;
+          if (index >= _suggestions.length) {
+            _suggestions.addAll(generateWordPairs().take(10));
+          }
 
-      return _buildRow(_suggestions[i]);
-    });
+          return _buildRow(_suggestions[index]);
+        });
   }
 
   Widget _buildRow(WordPair pair) {
